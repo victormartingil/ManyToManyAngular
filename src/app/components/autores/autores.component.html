@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="container mt-4">
+        <h1>Autores</h1>
+    </div>
+    <br>
+    <div>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Autor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let autor of autores">
+                    <th>{{ autor.id }}</th>
+                    <td>{{ autor.nombre }} </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
