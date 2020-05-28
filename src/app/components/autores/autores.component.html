@@ -12,7 +12,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let autor of autores">
+                <tr *ngFor="let autor of autores$ | async">
                     <th>{{ autor.id }}</th>
                     <td>{{ autor.nombre }} </td>
                 </tr>

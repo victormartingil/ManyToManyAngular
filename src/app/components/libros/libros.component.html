@@ -13,12 +13,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let libro of libros">
+                <tr *ngFor="let libro of libros$ | async">
                     <th>{{ libro.id }}</th>
                     <td>{{ libro.titulo}} </td>
-                    <td>{{ libro.autor.nombre }}</td>
+                    <td>{{ libro.autor?.nombre }}</td>
                 </tr>
             </tbody>
         </table>
+    </div>
+    <br>
+    <div class="col-12">
+        <button class="btn btn-primary" (click)="addLibro()">Añadir</button>
     </div>
 </div>

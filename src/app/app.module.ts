@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { APP_ROUTING } from './app.routes';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { LibrosService } from './services/libros.service';
 
 import { AppComponent } from './app.component';
@@ -21,11 +23,12 @@ import { AutorComponent } from './components/autor/autor.component';
     LibrosComponent,
     AutoresComponent,
     LibroComponent,
-    AutorComponent
+    AutorComponent,
   ],
   imports: [
     BrowserModule,
-    APP_ROUTING
+    APP_ROUTING,
+    HttpClientModule
   ],
   providers: [
     LibrosService

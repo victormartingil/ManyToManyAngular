@@ -1,29 +1,26 @@
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Autor } from '../components/models/autor.model';
-import { Libro } from '../components/models/libro.model';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+
+import { LibroConAutores } from '../models/libro-con-autores';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LibrosService {
 
-  autor1 = new Autor(1, 'Kafka');
-  autor2 = new Autor(2, 'Homero');
+  libros: LibroConAutores[] = [];
 
-  libro1 = new Libro (1, 'Metamorfosis', this.autor1);
-  libro2 = new Libro (2, 'El castillo', this.autor1);
-  libro3 = new Libro (3, 'Odisea', this.autor2);
+  constructor(private http: HttpClient) {
+  }
 
-  public libros: Libro[] = [
-    this.libro1,
-    this.libro2,
-    this.libro3
-  ];
+  getLibros(): Observable<LibroConAutores>{
+    return this.http.get<LibroConAutores>(environment.api + '/libros');
+  }
 
-  constructor() { }
-
-  getLibros(): Libro[]{
-    return this.libros;
+  addLibro(libro: LibroConAutores): void{
+    this.http.post<LibroConAutores>(environment.api + '/libros', libro);
   }
 
 }
