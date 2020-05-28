@@ -24,7 +24,7 @@ export class AutoresComponent implements OnInit {
   }
 
   addAutor(){
-    console.info('addAutor', this.autor);
+    console.log('addAutor_component', this.autor);
     this.autoresService.addAutor(this.autor);
   }
 

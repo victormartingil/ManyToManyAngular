@@ -26,7 +26,7 @@ export class LibrosComponent implements OnInit {
   }
 
   addLibro(){
-    console.info('addlibro', this.libro);
+    console.log('addlibro', this.libro);
     this.librosService.addLibro(this.libro);
   }
 }

@@ -20,6 +20,7 @@ export class AutoresService {
   }
 
   addAutor(autor: Autor): void{
+    console.log('addAutor_service', autor);
     this.http.post<Autor>(environment.api + '/autores', autor);
   }
 }
