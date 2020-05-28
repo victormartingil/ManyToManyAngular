@@ -12,8 +12,10 @@ import { Autor } from '../../models/autor';
 export class LibrosComponent implements OnInit {
 
   libros$: Observable<LibroConAutores>;
+
+  // Prueba para añadir desde local
   autorPrueba: Autor = new Autor(1, null);
-  libroConAutoresPrueba: LibroConAutores = new LibroConAutores(9, 'LibroPruebaOtro', [this.autorPrueba]);
+  libro: LibroConAutores = new LibroConAutores(9, 'LibroPruebaOtro', [this.autorPrueba]);
 
 
   constructor(private librosService: LibrosService) {
@@ -24,7 +26,7 @@ export class LibrosComponent implements OnInit {
   }
 
   addLibro(){
-    console.info('addlibro', this.libroConAutoresPrueba);
-    this.librosService.addLibro(this.libroConAutoresPrueba);
+    console.info('addlibro', this.libro);
+    this.librosService.addLibro(this.libro);
   }
 }

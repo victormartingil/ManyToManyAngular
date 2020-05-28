@@ -13,10 +13,17 @@ export class AutoresComponent implements OnInit {
 
   autores$: Observable<AutorConLibros>;
 
+  autor: AutorConLibros = new AutorConLibros(0, 'Autor prueba');
+
   constructor(private autoresService: AutoresService) { }
 
   ngOnInit(): void {
     this.autores$ = this.autoresService.getAutores();
+  }
+
+  addAutor(){
+    console.info('addAutor', this.autor);
+    this.autoresService.addAutor(this.autor);
   }
 
 }

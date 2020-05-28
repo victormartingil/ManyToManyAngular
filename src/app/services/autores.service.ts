@@ -17,4 +17,8 @@ export class AutoresService {
   getAutores(): Observable<AutorConLibros>{
     return this.http.get<AutorConLibros>(environment.api + '/autores');
   }
+
+  addAutor(autor: AutorConLibros): void{
+    this.http.post<AutorConLibros>(environment.api + '/autores', autor);
+  }
 }
