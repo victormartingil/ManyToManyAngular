@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
+import { Autor } from '../models/autor';
 import { AutorConLibros } from '../models/autor-con-libros';
 
 @Injectable({
@@ -10,7 +11,7 @@ import { AutorConLibros } from '../models/autor-con-libros';
 })
 export class AutoresService {
 
-  autores: AutorConLibros[] = [];
+  autores: Autor[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -18,7 +19,7 @@ export class AutoresService {
     return this.http.get<AutorConLibros>(environment.api + '/autores');
   }
 
-  addAutor(autor: AutorConLibros): void{
-    this.http.post<AutorConLibros>(environment.api + '/autores', autor);
+  addAutor(autor: Autor): void{
+    this.http.post<Autor>(environment.api + '/autores', autor);
   }
 }

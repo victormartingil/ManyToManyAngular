@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AutorConLibros } from '../../models/autor-con-libros';
-import { AutoresService } from '../../services/autores.service';
 import { Observable } from 'rxjs';
-import { Libro } from '../../models/libro';
+
+import { AutoresService } from '../../services/autores.service';
+
+import { Autor } from '../../models/autor';
+import { AutorConLibros } from '../../models/autor-con-libros';
 
 @Component({
   selector: 'app-autores',
@@ -13,7 +15,7 @@ export class AutoresComponent implements OnInit {
 
   autores$: Observable<AutorConLibros>;
 
-  autor: AutorConLibros = new AutorConLibros(0, 'Autor prueba');
+  autor: Autor = new Autor(0, 'Autor prueba');
 
   constructor(private autoresService: AutoresService) { }
 
