@@ -15,7 +15,6 @@ import { LibrosComponent } from './components/libros/libros.component';
 import { AutoresComponent } from './components/autores/autores.component';
 import { LibroComponent } from './components/libro/libro.component';
 import { AutorComponent } from './components/autor/autor.component';
-import { AddLibroComponent } from './components/add-libro/add-libro.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,6 @@ import { AddLibroComponent } from './components/add-libro/add-libro.component';
     AutoresComponent,
     LibroComponent,
     AutorComponent,
-    AddLibroComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,7 @@ import { LibrosService } from '../../services/libros.service';
 import { LibroConAutores } from '../../models/libro-con-autores';
 import { Observable } from 'rxjs';
 import { Autor } from '../../models/autor';
-import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-libros',
@@ -15,40 +15,36 @@ export class LibrosComponent implements OnInit {
   libros$: Observable<LibroConAutores>;
   autor: Autor;
   titulo: string;
-  id: number;
-  libro: LibroConAutores = new LibroConAutores(0, 'hola', [new Autor(1, null)]);
+  idAutor: number;
+
   form: FormGroup;
 
   constructor(private librosService: LibrosService,
-              private formBuilder: FormBuilder) {
+              private fb: FormBuilder) {
+        this.crearFromulario();
   }
 
   ngOnInit(): void {
     this.libros$ = this.librosService.getLibros();
   }
 
-  // cargarDatosFormulario(){
-  // this.form = this.formBuilder.group({
-  //   titulo: ['tituloPrueba', [Validators.required, Validators.minLength(3)]],
-  //   autor: [3, Validators.required]
-  // });
-  // }
+  crearFromulario(){
+    //Aquí podemos setear texto a nuestro formulario:
+    this.form = this.fb.group({
+      tituloCtrl : [''],
+      idAutorCtrl: [''],
+    });
+  }
 
   addLibro() {
-    this.titulo = this.form.get('titulo').value;
-    this.id = this.form.get('autor').value;
-
-    console.log(this.titulo + ' - ' + this.id);
-    // this.autor = new Autor(f.controls.autor.value, null);
-    // this.libro = new LibroConAutores(0, f.controls.titulo.value, [this.autor]);
-    // if (f.valid){
-    //   this.librosService.addLibro(this.libro);
-    // }
+    this.titulo = this.form.get('tituloCtrl').value;
+    this.idAutor = this.form.get('idAutorCtrl').value;
+    this.librosService.addLibro(this.titulo, this.idAutor);
+    console.log(this.form);
   }
 
-  nombreNoValido(){
-    return this.form.get('titulo').invalid && this.form.get('titulo').touched;
-  }
-
+  // nombreNoValido(){
+  //   return this.form.get('titulo').invalid && this.form.get('titulo').touched;
+  // }
 
 }
