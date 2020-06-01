@@ -36,12 +36,25 @@ export class LibrosComponent implements OnInit {
     });
   }
 
-  addLibro() {
+  add() {
     this.titulo = this.form.get('tituloCtrl').value;
     this.idAutor = this.form.get('idAutorCtrl').value;
-    this.librosService.addLibro(this.titulo, this.idAutor);
-    console.log(this.form);
+    console.log('Component - ADD');
+    this.librosService.add(this.titulo, this.idAutor)
+      .subscribe(() => this.libros$ = this.librosService.getLibros());
   }
+
+  delete(id: number){
+    console.log('Component - DELETE: ' + id);
+    return this.librosService.delete(id)
+      .subscribe(() => this.libros$ = this.librosService.getLibros());
+  }
+
+  edit(id: number){
+    console.log('Component - EDIT');
+  }
+
+
 
   // nombreNoValido(){
   //   return this.form.get('titulo').invalid && this.form.get('titulo').touched;
