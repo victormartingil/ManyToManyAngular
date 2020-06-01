@@ -20,7 +20,11 @@ export class LibrosService {
   }
 
   addLibro(libro: LibroConAutores): void{
-    this.http.post<LibroConAutores>(environment.api + '/libros', libro);
+    this.http.post<LibroConAutores>(environment.api + '/libros', libro)
+             .toPromise()
+             .then(data => {
+                console.log(data);
+          });
   }
 
 }

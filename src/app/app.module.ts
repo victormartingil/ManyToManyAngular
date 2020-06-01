@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { APP_ROUTING } from './app.routes';
 
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule, NgModel } from '@angular/forms';
 
 import { LibrosService } from './services/libros.service';
 
@@ -14,6 +15,7 @@ import { LibrosComponent } from './components/libros/libros.component';
 import { AutoresComponent } from './components/autores/autores.component';
 import { LibroComponent } from './components/libro/libro.component';
 import { AutorComponent } from './components/autor/autor.component';
+import { AddLibroComponent } from './components/add-libro/add-libro.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +26,14 @@ import { AutorComponent } from './components/autor/autor.component';
     AutoresComponent,
     LibroComponent,
     AutorComponent,
+    AddLibroComponent,
   ],
   imports: [
     BrowserModule,
     APP_ROUTING,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     LibrosService
