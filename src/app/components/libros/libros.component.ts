@@ -42,15 +42,19 @@ export class LibrosComponent implements OnInit {
     this.idAutor = this.form.get('idAutorCtrl').value;
     console.log('Component - ADD');
     this.librosService.add(this.titulo, this.idAutor)
-      .subscribe(() => this.libros$ = this.librosService.getLibros(),
-                  (error) => console.log(error));
+      .subscribe(() => {
+        this.libros$ = this.librosService.getLibros();
+        this.form.reset();
+      }, (error) => console.log(error));
   }
 
   delete(id: number){
     console.log('Component - DELETE: ' + id);
     this.librosService.delete(id)
-      .subscribe(() => this.libros$ = this.librosService.getLibros(),
-                (error) => console.log(error));
+      .subscribe(() => {
+        this.libros$ = this.librosService.getLibros();
+        this.form.reset();
+      }, (error) => console.log(error));
   }
 
   edit(id: number){

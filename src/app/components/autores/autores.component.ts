@@ -39,14 +39,20 @@ export class AutoresComponent implements OnInit {
     this.nombre = this.form.get('nombreCtrl').value;
     this.autor = new Autor(0, this.nombre);
     this.autoresService.add(this.autor)
-      .subscribe(() => this.autores$ = this.autoresService.getAutores(),
-                (error) => console.log(error));
+      .subscribe(() => {
+        this.autores$ = this.autoresService.getAutores();
+        this.form.reset();
+      }, (error) => console.log(error));
 
   }
 
   delete(id: number){
     this.autoresService.delete(id)
-      .subscribe(() => this.autores$ = this.autoresService.getAutores(),
+      .subscribe(() => {
+        this.autores$ = this.autoresService.getAutores();
+        this.form.reset();
+
+      },
                 (error) => console.log(error));
   }
 
