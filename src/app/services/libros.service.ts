@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment';
 import { LibroConAutores } from '../models/libro-con-autores';
 import { Autor } from '../models/autor';
 import { CATCH_ERROR_VAR } from '@angular/compiler/src/output/output_ast';
+import { AutorConLibros } from '../models/autor-con-libros';
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +32,8 @@ export class LibrosService {
   }
 
   add(titulo: string, idAutor: number): Observable<any>{
-    console.log('Service - ADD');
-    return this.http.post<any>(environment.api + '/libros', new LibroConAutores(0, titulo, [new Autor(idAutor, null)]));
+    const nuevoAutor: Autor = new Autor(idAutor, null);
+    return this.http.post<any>(environment.api + '/libros', new LibroConAutores(0, titulo, [nuevoAutor]));
   }
 
   delete(id: number): Observable<any> {

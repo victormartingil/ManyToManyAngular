@@ -3,8 +3,9 @@ import { LibrosService } from '../../services/libros.service';
 import { LibroConAutores } from '../../models/libro-con-autores';
 import { Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Autor } from '../../models/autor';
+import { AutorConLibros } from '../../models/autor-con-libros';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AutoresService } from '../../services/autores.service';
 
 @Component({
   selector: 'app-libros',
@@ -13,43 +14,48 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class LibrosComponent implements OnInit {
 
-  libros$: Observable<LibroConAutores>;
-  autor: Autor;
+  autor: AutorConLibros;
   titulo: string;
   idAutor: number;
+
+  libros$: Observable<LibroConAutores>;
+  autores$: Observable<AutorConLibros>;
+
 
   form: FormGroup;
 
   constructor(private librosService: LibrosService,
+              private autoresService: AutoresService,
               private fb: FormBuilder) {
         this.crearFromulario();
   }
 
   ngOnInit(): void {
     this.libros$ = this.librosService.getLibros();
+    this.autores$ = this.autoresService.getAutores();
   }
 
   crearFromulario(){
     // Aquí podemos setear texto a nuestro formulario:
     this.form = this.fb.group({
       tituloCtrl : [''],
-      idAutorCtrl: [''],
     });
+  }
+
+  selectAutor(event: any){
+    this.idAutor = event.target.value;
   }
 
   add() {
     this.titulo = this.form.get('tituloCtrl').value;
-    this.idAutor = this.form.get('idAutorCtrl').value;
-    console.log('Component - ADD');
     this.librosService.add(this.titulo, this.idAutor)
       .subscribe(() => {
         this.libros$ = this.librosService.getLibros();
         this.form.reset();
-      }, (error) => console.log(error));
+      }, (error) => console.log('Error: ' + error));
   }
 
   delete(id: number){
-    console.log('Component - DELETE: ' + id);
     this.librosService.delete(id)
       .subscribe(() => {
         this.libros$ = this.librosService.getLibros();
