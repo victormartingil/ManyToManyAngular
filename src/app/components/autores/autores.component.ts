@@ -5,6 +5,7 @@ import { AutoresService } from '../../services/autores.service';
 
 import { Autor } from '../../models/autor';
 import { AutorConLibros } from '../../models/autor-con-libros';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-autores',
@@ -14,18 +15,43 @@ import { AutorConLibros } from '../../models/autor-con-libros';
 export class AutoresComponent implements OnInit {
 
   autores$: Observable<AutorConLibros>;
+  autor: Autor;
+  nombre: string;
 
-  autor: Autor = new Autor(0, 'Autor prueba');
+  form: FormGroup;
 
-  constructor(private autoresService: AutoresService) { }
+  constructor(private fb: FormBuilder,
+              private autoresService: AutoresService) {
+    this.crearFormulario();
+  }
 
   ngOnInit(): void {
     this.autores$ = this.autoresService.getAutores();
   }
 
-  addAutor(){
-    console.log('addAutor_component', this.autor);
-    this.autoresService.addAutor(this.autor);
+  crearFormulario() {
+    this.form = this.fb.group({
+      nombreCtrl : [''],
+    });
+  }
+
+  add(){
+    this.nombre = this.form.get('nombreCtrl').value;
+    this.autor = new Autor(0, this.nombre);
+    this.autoresService.add(this.autor)
+      .subscribe(() => this.autores$ = this.autoresService.getAutores(),
+                (error) => console.log(error));
+
+  }
+
+  delete(id: number){
+    this.autoresService.delete(id)
+      .subscribe(() => this.autores$ = this.autoresService.getAutores(),
+                (error) => console.log(error));
+  }
+
+  edit(id: number){
+    console.log('Component - EDIT');
   }
 
 }

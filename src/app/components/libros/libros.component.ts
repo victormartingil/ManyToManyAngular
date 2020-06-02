@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LibrosService } from '../../services/libros.service';
 import { LibroConAutores } from '../../models/libro-con-autores';
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Autor } from '../../models/autor';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
@@ -29,7 +30,7 @@ export class LibrosComponent implements OnInit {
   }
 
   crearFromulario(){
-    //Aquí podemos setear texto a nuestro formulario:
+    // Aquí podemos setear texto a nuestro formulario:
     this.form = this.fb.group({
       tituloCtrl : [''],
       idAutorCtrl: [''],
@@ -41,20 +42,20 @@ export class LibrosComponent implements OnInit {
     this.idAutor = this.form.get('idAutorCtrl').value;
     console.log('Component - ADD');
     this.librosService.add(this.titulo, this.idAutor)
-      .subscribe(() => this.libros$ = this.librosService.getLibros());
+      .subscribe(() => this.libros$ = this.librosService.getLibros(),
+                  (error) => console.log(error));
   }
 
   delete(id: number){
     console.log('Component - DELETE: ' + id);
-    return this.librosService.delete(id)
-      .subscribe(() => this.libros$ = this.librosService.getLibros());
+    this.librosService.delete(id)
+      .subscribe(() => this.libros$ = this.librosService.getLibros(),
+                (error) => console.log(error));
   }
 
   edit(id: number){
     console.log('Component - EDIT');
   }
-
-
 
   // nombreNoValido(){
   //   return this.form.get('titulo').invalid && this.form.get('titulo').touched;

@@ -2,30 +2,42 @@
     <div class="container mt-4">
         <h1>Autores</h1>
     </div>
+
     <br>
+
     <div>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">id</th>
                     <th scope="col">Autor</th>
+                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let autor of autores$ | async">
                     <th>{{ autor.id }}</th>
                     <td>{{ autor.nombre }} </td>
+                    <td>
+                      <button class="btn btn-info mr-3" (click)="edit(autor.id)">
+                        <i class="icon-pencil icon-large"></i>
+                      </button>
+                      <button class="btn btn-danger" (click)="delete(autor.id)">
+                        <i class="icon-trash icon-large"></i>
+                      </button>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div>
-        <form>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Nombre del autor</label>
-                <input class="form-control" id="titulo">
-            </div>
-            <button type="submit" class="btn btn-primary" (click)="addAutor()">Añadir</button>
-        </form>
+
+    <div class="row m-3">
+      <form [formGroup]="form" (ngSubmit)="add()">
+          <div class="form-group row">
+            <label for="nombre" class="text-secondary font-weight-bold ">Nombre del autor</label>
+            <input type="text" class="form-control" formControlName="nombreCtrl" />
+          </div>
+          <button type="submit" class="btn btn-primary">Añadir</button>
+      </form>
     </div>
 </div>

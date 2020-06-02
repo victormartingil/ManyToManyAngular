@@ -15,6 +15,7 @@ import { LibrosComponent } from './components/libros/libros.component';
 import { AutoresComponent } from './components/autores/autores.component';
 import { LibroComponent } from './components/libro/libro.component';
 import { AutorComponent } from './components/autor/autor.component';
+import { MapAutoresComponent } from './components/map-autores/map-autores.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AutorComponent } from './components/autor/autor.component';
     AutoresComponent,
     LibroComponent,
     AutorComponent,
+    MapAutoresComponent,
   ],
   imports: [
     BrowserModule,

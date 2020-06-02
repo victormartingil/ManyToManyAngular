@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
@@ -15,6 +15,7 @@ export class LibrosService {
 
   libros: LibroConAutores[] = [];
   libro: LibroConAutores;
+  titulos: string[];
 
   constructor(private http: HttpClient) {
   }
@@ -23,13 +24,15 @@ export class LibrosService {
     return this.http.get<LibroConAutores>(environment.api + '/libros');
   }
 
+  // Ejemplo Observable-Pipe-Map que no llega a funcionar
+  getTitulos(): Observable<any> {
+    return this.http.get<LibroConAutores>(environment.api + '/libros')
+      .pipe( map ( data => data['autores?'].items ));
+  }
+
   add(titulo: string, idAutor: number): Observable<any>{
     console.log('Service - ADD');
     return this.http.post<any>(environment.api + '/libros', new LibroConAutores(0, titulo, [new Autor(idAutor, null)]));
-  }
-
-  handleError(arg0: string, hero: any): (err: any, caught: Observable<LibroConAutores>) => import("rxjs").ObservableInput<any> {
-    throw new Error("Method not implemented.");
   }
 
   delete(id: number): Observable<any> {

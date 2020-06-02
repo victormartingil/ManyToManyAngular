@@ -19,8 +19,16 @@ export class AutoresService {
     return this.http.get<AutorConLibros>(environment.api + '/autores');
   }
 
-  addAutor(autor: Autor): void{
-    console.log('addAutor_service', autor);
-    this.http.post<Autor>(environment.api + '/autores', autor);
+  add(autor: Autor): Observable<Autor>{
+    return this.http.post<Autor>(environment.api + '/autores', autor);
+  }
+
+  delete(id: number): Observable<any> {
+    const url = environment.api + '/autores/' + id;
+    return this.http.delete(url);
+  }
+
+  edit(id: number){
+    console.log('Services - EDIT');
   }
 }
