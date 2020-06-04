@@ -1,0 +1,19 @@
+<div class="row m-3">
+  <form [formGroup]="form" (ngSubmit)="add()">
+    <div class="form-group row">
+      <label for="titulo" class="text-secondary font-weight-bold ">Título</label>
+      <input type="text" class="form-control" formControlName="tituloCtrl" placeholder="Título..." />
+    </div>
+
+    <select class="browser-default custom-select form-group row" (change)="selectAutor($event)">
+      <option selected>Elija el autor</option>
+      <option *ngFor="let autor of autores$ | async" value="{{ autor.id }}">
+        {{ autor.nombre }}
+      </option>
+    </select>
+
+    <div class="mt-3">
+      <button type="submit" class="btn btn-primary">Añadir</button>
+    </div>
+  </form>
+</div>

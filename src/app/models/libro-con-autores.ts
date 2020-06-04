@@ -11,4 +11,12 @@ export class LibroConAutores extends Libro{
     this.autores = autores;
   }
 
+  getAutores(): Autor[]{
+    return this.autores;
+  }
+
+
+
+
+
 }

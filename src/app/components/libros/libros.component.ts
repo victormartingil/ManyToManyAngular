@@ -18,6 +18,7 @@ export class LibrosComponent implements OnInit {
   autor: AutorConLibros;
   titulo: string;
   idAutor: number;
+  showAdd = false;
 
   libros$: Observable<LibroConAutores>;
   autores$: Observable<AutorConLibros>;
@@ -29,32 +30,10 @@ export class LibrosComponent implements OnInit {
               private autoresService: AutoresService,
               private route: Router,
               private fb: FormBuilder) {
-        this.crearFromulario();
   }
 
   ngOnInit(): void {
     this.libros$ = this.librosService.getLibros();
-    this.autores$ = this.autoresService.getAutores();
-  }
-
-  crearFromulario(){
-    // Aquí podemos setear texto a nuestro formulario:
-    this.form = this.fb.group({
-      tituloCtrl : [''],
-    });
-  }
-
-  selectAutor(event: any){
-    this.idAutor = event.target.value;
-  }
-
-  add() {
-    this.titulo = this.form.get('tituloCtrl').value;
-    this.librosService.add(this.titulo, this.idAutor)
-      .subscribe(() => {
-        this.libros$ = this.librosService.getLibros();
-        this.form.reset();
-      }, (error) => console.log('Error: ' + error));
   }
 
   delete(id: number){
@@ -69,8 +48,14 @@ export class LibrosComponent implements OnInit {
     this.route.navigate(['/libro/', id]);
   }
 
-  // nombreNoValido(){
-  //   return this.form.get('titulo').invalid && this.form.get('titulo').touched;
-  // }
+  showAddFunction(){
+    this.showAdd = !this.showAdd;
+  }
+
+  updateList(){
+    this.libros$ = this.librosService.getLibros();
+    this.showAddFunction();
+    console.log('updateList');
+  }
 
 }

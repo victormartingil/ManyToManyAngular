@@ -14,8 +14,7 @@ export class LibroComponent implements OnInit {
 
   id: number;
   tituloCtrl: string;
-  libro: any;
-  libroEditado: LibroConAutores;
+  libro: LibroConAutores;
 
   form: FormGroup;
 
@@ -51,16 +50,20 @@ export class LibroComponent implements OnInit {
   }
 
   edit(id: number){
-    this.libroEditado = new LibroConAutores (this.libro.id, this.form.get('titulo').value);
-    this.librosService.edit(this.libroEditado)
+    const autores$ = this.libro.getAutores();
+    const libroEditado = new LibroConAutores (this.libro.id, this.form.get('titulo').value, autores$);
+    this.librosService.edit(libroEditado)
       .subscribe(() => {
         this.router.navigate(['libros']);
         this.showOKDialog();
       });
   }
 
-  getLibro(id: number): Observable<LibroConAutores>{
-    return this.libro = this.librosService.getLibro(id);
+  getLibro(id: number){
+    this.librosService.getLibro(id)
+      .subscribe(data => {
+        this.libro = data;
+      });
   }
 
   showOKDialog(){
