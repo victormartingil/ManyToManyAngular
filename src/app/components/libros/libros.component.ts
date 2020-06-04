@@ -40,7 +40,6 @@ export class LibrosComponent implements OnInit {
     this.librosService.delete(id)
       .subscribe(() => {
         this.libros$ = this.librosService.getLibros();
-        this.form.reset();
       }, (error) => console.log(error));
   }
 
