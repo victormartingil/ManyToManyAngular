@@ -25,6 +25,10 @@ export class LibrosService {
     return this.http.get<LibroConAutores>(environment.api + '/libros');
   }
 
+  getLibro(id: number): Observable<LibroConAutores>{
+    return this.http.get<LibroConAutores>(environment.api + '/libros/' + id);
+  }
+
   // Ejemplo Observable-Pipe-Map que no llega a funcionar
   getTitulos(): Observable<any> {
     return this.http.get<LibroConAutores>(environment.api + '/libros')
@@ -42,8 +46,9 @@ export class LibrosService {
     return this.http.delete(url);
   }
 
-  edit(id: number){
-    console.log('Services - EDIT');
+  edit(libro: LibroConAutores): Observable<LibroConAutores>{
+    return this.http.put<any>(environment.api + '/libros', libro);
+
   }
 
 }

@@ -1,1 +1,31 @@
-<p>libros works!</p>
+<div class="row container mt-3">
+  <div class="col-12 col-md-8">
+    <img class="card-img-top" src="https://lapiedradesisifo.com/wp-content/uploads/2015/11/libro_abierto.jpg"
+      alt="Imagen" />
+
+      <div [formGroup]="form" class="card-body">
+        <div class="row">
+          <div clas="col-12">
+            <!-- <h4  class="mb-3">{{ libro.titulo }}</h4> -->
+          </div>
+          <div class="col-12">
+            <label for="titulo" class="text-secondary font-weight-bold">Edita el título</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-10">
+            <input type="text" class="form-control" formControlName="titulo" placeholder="..." />
+          </div>
+          <div>
+            <button class="btn btn-info mr-3" (click)="cleanForm()">
+              <i class="icon-eraser icon-large"></i>
+            </button>
+          </div>
+        </div>
+
+        <button (click)="edit(libro.id)" type="button" class="btn btn-outline-primary btn-block mt-5">
+          Editar
+        </button>
+      </div>
+  </div>
+</div>

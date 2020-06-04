@@ -1,0 +1,17 @@
+<div class="container m-4">
+  <h1>Libros</h1>
+  <div class="container row">
+    <div class="card-columns">
+      <div *ngFor="let libro of libros$ | async" class="card animate__animated animate__fadeIn">
+        <img class="card-img-top" src="https://lapiedradesisifo.com/wp-content/uploads/2015/11/libro_abierto.jpg" alt="Imagen" />
+        <div class="card-body">
+          <h4 class="card-title mb-3">{{ libro.titulo }}</h4>
+          <ul class="list-group" *ngFor="let autor of libro.autores">
+            <li [routerLink]="['/autores']" class="list-group-item">{{ autor.nombre }}</li>
+          </ul>
+          <button (click)="editarLibro(libro.id)" type="button" class="btn btn-outline-primary btn-block mt-5">Editar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

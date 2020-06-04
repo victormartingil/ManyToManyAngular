@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { AutorConLibros } from '../../models/autor-con-libros';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AutoresService } from '../../services/autores.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-libros',
@@ -26,6 +27,7 @@ export class LibrosComponent implements OnInit {
 
   constructor(private librosService: LibrosService,
               private autoresService: AutoresService,
+              private route: Router,
               private fb: FormBuilder) {
         this.crearFromulario();
   }
@@ -64,7 +66,7 @@ export class LibrosComponent implements OnInit {
   }
 
   edit(id: number){
-    console.log('Component - EDIT');
+    this.route.navigate(['/libro/', id]);
   }
 
   // nombreNoValido(){
