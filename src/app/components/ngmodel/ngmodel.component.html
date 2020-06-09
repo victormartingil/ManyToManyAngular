@@ -1,0 +1,57 @@
+<div class="container m-3">
+
+  <div class="row">
+    <div class="col my-3">
+      <h3>Binding en dos sentidos</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 my-3">
+      <span>Introduzca un texto cualquiera:</span>
+    </div>
+    <div class="col-8 my-3">
+      <input type="text" class="form-control" [(ngModel)]="text" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <span>El valor de la variable es: <h4>{{ text }}</h4></span>
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col">
+      <button (click)="toUppercase()" class="btn btn-primary mr-3">MAYUSCULAS</button>
+      <button (click)="toLowercase()" class="btn btn-primary">minusculas</button>
+    </div>
+  </div>
+
+  <hr />
+  <hr />
+
+  <form class="row" [formGroup]="form" (ngSubmit)="editarVariable()">
+    <div class="col-12">
+      <label>Edita la variable con otro valor, y observa como cambia el el input y el valor de la variable
+        anteriores
+      </label>
+    </div>
+    <div class="col-6">
+      <input type="text" class="form-control" formControlName="variableCtrl">
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-warning">Editar</button>
+    </div>
+  </form>
+
+  <h4 class="mt-5">
+    Utilizamos <strong>[(ngModel)]</strong> para sincronizar el valor de la variable en los dos sentidos:
+  </h4>
+  <h5>
+    - El formulario (input) edita la variable.
+  </h5>
+  <h5>
+    - Al editar la variable (con los botones) se edita el contenido del formulario.
+  </h5>
+
+</div>

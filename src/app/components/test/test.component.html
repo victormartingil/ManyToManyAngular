@@ -1,0 +1,30 @@
+<div class="container m-3">
+  <div class="row">
+    <div class="col-5">
+      <form [formGroup]="form" (ngSubmit)="getTituloFromForm()">
+        <div class="form-group">
+          <label for="titulo" class="text-secondary font-weight-bold ">Título</label>
+          <input type="text" class="form-control" formControlName="tituloCtrl" placeholder="Título..."
+            [class.is-invalid]="tituloNoValido" />
+          <small *ngIf="tituloNoValido" class="text-danger">
+            Ingrese un título de al menos 3 caracteres.
+          </small>
+        </div>
+
+        <select class="browser-default custom-select form-group" (change)="selectAutor($event)">
+          <option selected>Elija el autor</option>
+          <option *ngFor="let autor of autores" value="{{ autor }}">
+            {{ autor }}
+          </option>
+        </select>
+
+        <div class="my-3">
+          <button type="submit" class="btn btn-primary">Añadir</button>
+        </div>
+
+        <p>El título escrito es: {{ titulo }}</p>
+        <p>El autor seleccionado es: {{ autor }}</p>
+      </form>
+    </div>
+  </div>
+</div>

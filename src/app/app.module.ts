@@ -17,6 +17,9 @@ import { LibroComponent } from './components/libro/libro.component';
 import { AutorComponent } from './components/autor/autor.component';
 import { LibrosCardsComponent } from './components/libros-cards/libros-cards.component';
 import { AddLibroComponent } from './components/libros/add-libro/add-libro.component';
+import { TestComponent } from './components/test/test.component';
+import { RadioComponent } from './components/radio/radio.component';
+import { NgmodelComponent } from './components/ngmodel/ngmodel.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,9 @@ import { AddLibroComponent } from './components/libros/add-libro/add-libro.compo
     AutorComponent,
     LibrosCardsComponent,
     AddLibroComponent,
+    TestComponent,
+    RadioComponent,
+    NgmodelComponent,
   ],
   imports: [
     BrowserModule,
