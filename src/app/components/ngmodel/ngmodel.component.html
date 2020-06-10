@@ -30,6 +30,7 @@
   <hr />
   <hr />
 
+  <div class="new-post-container">
   <form class="row" [formGroup]="form" (ngSubmit)="editarVariable()">
     <div class="col-12">
       <label>Edita la variable con otro valor, y observa como cambia el el input y el valor de la variable
@@ -43,6 +44,7 @@
       <button type="submit" class="btn btn-warning">Editar</button>
     </div>
   </form>
+</div>
 
   <h4 class="mt-5">
     Utilizamos <strong>[(ngModel)]</strong> para sincronizar el valor de la variable en los dos sentidos:

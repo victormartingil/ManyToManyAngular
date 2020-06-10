@@ -20,6 +20,7 @@ import { AddLibroComponent } from './components/libros/add-libro/add-libro.compo
 import { TestComponent } from './components/test/test.component';
 import { RadioComponent } from './components/radio/radio.component';
 import { NgmodelComponent } from './components/ngmodel/ngmodel.component';
+import { ImageComponent } from './components/image/image.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { NgmodelComponent } from './components/ngmodel/ngmodel.component';
     TestComponent,
     RadioComponent,
     NgmodelComponent,
+    ImageComponent,
   ],
   imports: [
     BrowserModule,

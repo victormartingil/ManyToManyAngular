@@ -9,6 +9,7 @@ import { LibrosCardsComponent } from './components/libros-cards/libros-cards.com
 import { TestComponent } from './components/test/test.component';
 import { RadioComponent } from './components/radio/radio.component';
 import { NgmodelComponent } from './components/ngmodel/ngmodel.component';
+import { ImageComponent } from './components/image/image.component';
 
 const APP_ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
@@ -19,6 +20,7 @@ const APP_ROUTES: Routes = [
   { path: 'libros-cards', component: LibrosCardsComponent },
   { path: 'radio', component: RadioComponent },
   { path: 'ngmodel', component: NgmodelComponent },
+  { path: 'image', component: ImageComponent },
   { path: 'test', component: TestComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];
