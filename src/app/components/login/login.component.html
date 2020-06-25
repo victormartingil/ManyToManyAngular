@@ -1,0 +1,62 @@
+<div class="container mt-5">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card card-login">
+			<div class="card-header">
+				<h3>Iniciar sesión</h3>
+				<div class="d-flex justify-content-end social_icon">
+					<span><i class="fab fa-facebook-square"></i></span>
+					<span><i class="fab fa-google-plus-square"></i></span>
+				</div>
+			</div>
+			<div class="card-body">
+				<form [formGroup]="form" (ngSubmit)="login()">
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+            <input  type="text"
+                    class="form-control"
+                    formControlName="emailCtrl"
+                    [class.is-invalid]="emailNoValido"
+                    placeholder="email">
+            <small *ngIf="emailNoValido" class="text-white">*Formato email incorrecto</small>
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+            <input  type="password"
+                    class="form-control"
+                    formControlName="passwordCtrl"
+                    [class.is-invalid]="passwordNoValido"
+                    placeholder="password">
+                    <small *ngIf="passwordNoValido" class="text-white">*La contraseña debe tener más de 6 caracteres</small>
+					</div>
+					<div class="row align-items-center remember">
+						<input type="checkbox">Recuérdame
+					</div>
+					<div class="form-group d-flex justify-content-end">
+						<button type="submit" class="btn btn-primary">
+						Iniciar sesión</button>
+          </div>
+          <div *ngIf="error">
+            <span class="text-white">Error: {{ error }}</span>
+          </div>
+        </form>
+			</div>
+			<div class="card-footer">
+				<div class="d-flex justify-content-center links">
+          ¿No tienes cuenta?
+          <a [routerLink]="['/registro']" class="green-link">Regístrate</a>
+				</div>
+				<div class="d-flex justify-content-center">
+					<a (click)="malaSuerte()" class="green-link">¿Olvidaste la contraseña?</a>
+				</div>
+			</div>
+		</div>
+		<div *ngIf="mostrarMalaSuerte">
+			<h3>Mala suerte</h3>
+		</div>
+  </div>
+</div>
+

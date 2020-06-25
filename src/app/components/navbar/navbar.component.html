@@ -36,6 +36,16 @@
           <a class="nav-link" [routerLink]="['test']">Test</a>
         </li>
 
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['private']">Private</a>
+        </li>
+
       </ul>
+
+      <a class="navbar-brand" [routerLink]="['login']">Iniciar sesión</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     </div>
   </nav>

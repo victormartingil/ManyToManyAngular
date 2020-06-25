@@ -21,6 +21,9 @@ import { TestComponent } from './components/test/test.component';
 import { RadioComponent } from './components/radio/radio.component';
 import { NgmodelComponent } from './components/ngmodel/ngmodel.component';
 import { ImageComponent } from './components/image/image.component';
+import { PrivateComponent } from './components/private/private.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegistroComponent } from './components/registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,9 @@ import { ImageComponent } from './components/image/image.component';
     RadioComponent,
     NgmodelComponent,
     ImageComponent,
+    PrivateComponent,
+    LoginComponent,
+    RegistroComponent,
   ],
   imports: [
     BrowserModule,
